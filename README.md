@@ -18,6 +18,5 @@ Here are some zsh/bash aliases:
 pf-devices() {  curl -H "$PFAUTH" -sk "${PFURL}/services/dhcpd/static_mapping?interface=lan" | jq -c '.data[] | [ .ipaddr, .hostname, .mac ]' ; }
 pf-leases() {  curl -H "$PFAUTH" -sk "${PFURL}/services/dhcpd/lease" | jq -c '.data[]' | grep -v 'expired'; }
 pf-arpinfo() {  curl -H "$PFAUTH" -sk "${PFURL}/system/arp" | jq -c '.data[] | [.interface, .mac, .ip]'  ; }
-pf-whatsnew() {  curl -H "$PFAUTH" -sk "${PFURL}/services/dhcpd/lease" | jq -c '.data[] | [.starts,.mac, .hostname]' |  grep -v 'expired'; }
-
+pf-whatsnew() {  curl -H "$PFAUTH" -sk "${PFURL}/services/dhcpd/lease" | jq -c '.data[] | [.starts,.ip, .mac, .hostname]' |  grep -v 'expired'; }
 ```
